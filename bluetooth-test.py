@@ -2,7 +2,7 @@ import bluetooth
 
 # Define the Bluetooth service name and UUID
 service_name = "GroundStation"
-uuid = "128-bit random generated"
+uuid = "c00a2d1a-0623-4cfc-980c-f11c6c6cd0dd"
 
 # Initialize Bluetooth socket
 server_socket = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
