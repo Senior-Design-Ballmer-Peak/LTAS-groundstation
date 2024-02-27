@@ -44,10 +44,6 @@ GroundStation is a versatile, Raspberry Pi-based communication hub designed to f
   1. Monitor real-time data from the rocket through the application interface.
   2. Adjust rocket parameters as needed based on the received data.
 
-## Contributing
-
-We welcome contributions from the community, whether it's adding new features, improving documentation, or reporting bugs. Please see the `CONTRIBUTING.md` file for more details on how to contribute to this project.
-
 ## License
 
 GroundStation is released under the MIT License. See the `LICENSE` file for more details.
