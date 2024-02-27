@@ -18,3 +18,11 @@ bluetooth.advertise_service(server_socket, service_name,
                              profiles=[bluetooth.SERIAL_PORT_PROFILE])
 
 print("Waiting for connection on RFCOMM channel", port)
+
+# Accept incoming connection
+client_socket, client_info = server_socket.accept()
+print("Accepted connection from", client_info)
+
+# Send message to the connected device
+message = "Hello from Groundstation!"
+client_socket.send(message)
