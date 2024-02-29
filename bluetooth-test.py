@@ -2,7 +2,7 @@ import bluetooth
 import time
 
 # Define the Bluetooth service name and UUID
-service_name = "GroundStation"
+service_name = "IhateBlueteeth"
 uuid = "c00a2d1a-0623-4cfc-980c-f11c6c6cd0dd"
 
 # Initialize Bluetooth socket
@@ -19,6 +19,8 @@ bluetooth.advertise_service(server_socket, service_name,
                              service_id=uuid,
                              service_classes=[uuid, bluetooth.SERIAL_PORT_CLASS],
                              profiles=[bluetooth.SERIAL_PORT_PROFILE])
+
+#bluetooth.advertise_service(server_socket, "test", service_id=uuid)
 
 print("Waiting for Bluetooth connection...")
 
