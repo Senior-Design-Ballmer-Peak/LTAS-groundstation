@@ -25,8 +25,9 @@ print("Accepted connection from", client_info)
 
 # Send message to the connected device
 message = "Hello from Groundstation!"
-client_socket.send(message)
-print("Message sent to " + client_info)
+client_socket.send(message.encode())  # Encode the message as bytes before sending
+
+print("Message sent to " + str(client_info))
 
 client_socket.close()
 server_socket.close()
