@@ -4,6 +4,9 @@
 
 GroundStation is a versatile, Raspberry Pi-based communication hub designed to facilitate seamless data exchange between a ground-based application and a rocket in flight. Utilizing Bluetooth for app connectivity and radio communication for interfacing with the rocket, GroundStation aims to provide hobbyists, educators, and researchers a reliable and straightforward platform for monitoring and controlling rockets in real-time.
 
+## Description
+The ground station will allow for communication between the rocket and the mobile app durning the entire launch.
+
 ## Features
 
 - **Bluetooth Connectivity**: Easily connect your mobile or desktop application to GroundStation via Bluetooth for intuitive control and data visualization.
