@@ -2,50 +2,58 @@ import bluetooth
 import time
 
 # Define the Bluetooth service name and UUID
+# These identifiers are used for advertising the service and allowing clients to discover and connect to it.
 service_name = "IhateBlueteeth"
 uuid = "c00a2d1a-0623-4cfc-980c-f11c6c6cd0dd"
 
-# Initialize Bluetooth socket
-server_socket = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
-
-port = 1  # RFCOMM port number
-
-# Accept incoming Bluetooth connection
-server_socket.bind(("", bluetooth.PORT_ANY))
-server_socket.listen(1)
-
-# Make the Raspberry Pi discoverable
-bluetooth.advertise_service(server_socket, service_name,
-                             service_id=uuid,
-                             service_classes=[uuid, bluetooth.SERIAL_PORT_CLASS],
-                             profiles=[bluetooth.SERIAL_PORT_PROFILE])
-
-#bluetooth.advertise_service(server_socket, "test", service_id=uuid)
-
-print("Waiting for Bluetooth connection...")
-
-
-
-client_socket, client_info = server_socket.accept()
-print("Accepted connection from", client_info)
-
-# Simulate receiving sensor data and forwarding it to the connected device
 try:
-    while True:
-        # Simulate receiving sensor data
-        sensor_data = "Sensor data from radio"
-        
-        # Forward sensor data to the connected device
-        client_socket.send(sensor_data.encode())  # Encode the data as bytes before sending
-        
-        print("Sent sensor data to", client_info)
-        
-        # Sleep for a while before sending the next data (adjust as needed)
-        time.sleep(1)
-except KeyboardInterrupt:
-    # Handle Ctrl+C gracefully
-    print("Stopping...")
+    # Initialize Bluetooth socket for RFCOMM communication
+    server_socket = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+
+    # Bind the server socket to any available local Bluetooth adapter on RFCOMM port 1
+    # bluetooth.PORT_ANY allows the system to automatically select an available port
+    server_socket.bind(("", bluetooth.PORT_ANY))
+    server_socket.listen(1)
+
+    # Make the Raspberry Pi discoverable by advertising the service
+    bluetooth.advertise_service(server_socket, service_name,
+                                service_id=uuid,
+                                service_classes=[uuid, bluetooth.SERIAL_PORT_CLASS],
+                                profiles=[bluetooth.SERIAL_PORT_PROFILE])
+
+    print("Waiting for Bluetooth connection...")
+
+    # Accept an incoming connection request
+    # This call is blocking and will wait until a client connects
+    client_socket, client_info = server_socket.accept()
+    print(f"Accepted connection from {client_info}")
+
+    # Main loop: Simulate receiving sensor data and forwarding it to the connected device
+    try:
+        while True:
+            # Example sensor data to be sent
+            sensor_data = "Sensor data from radio"
+            
+            # Send the sensor data to the connected Bluetooth device
+            # Encoding the string as bytes is necessary for transmission over Bluetooth
+            client_socket.send(sensor_data.encode())
+            
+            print(f"Sent sensor data to {client_info}")
+            
+            # Wait for a second before sending the next piece of data
+            time.sleep(1)
+    except KeyboardInterrupt:
+        # Handle the user pressing CTRL+C gracefully
+        print("User requested to stop the server. Stopping...")
+    finally:
+        # Ensure the client socket is closed to free up resources
+        client_socket.close()
+except Exception as e:
+    # Catch any other exceptions that may occur to avoid crashing the script
+    print(f"An error occurred: {e}")
 finally:
-    # Close sockets
-    client_socket.close()
-    server_socket.close()
+    # Ensure the server socket is always closed properly to free up the port and resources
+    if 'server_socket' in locals() or 'server_socket' in globals():
+        server_socket.close()
+
+print("Server stopped.")
