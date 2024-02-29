@@ -11,7 +11,7 @@ server_socket = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
 port = 1  # RFCOMM port number
 
 # Accept incoming Bluetooth connection
-server_socket.bind(("", port))
+server_socket.bind(("", bluetooth.PORT_ANY))
 server_socket.listen(1)
 
 # Make the Raspberry Pi discoverable
