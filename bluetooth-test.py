@@ -3,7 +3,7 @@ import time
 
 # Define the Bluetooth service name and UUID
 # These identifiers are used for advertising the service and allowing clients to discover and connect to it.
-service_name = "IhateBlueteeth"
+service_name = "groundstation"
 uuid = "c00a2d1a-0623-4cfc-980c-f11c6c6cd0dd"
 
 try:
@@ -57,3 +57,17 @@ finally:
         server_socket.close()
 
 print("Server stopped.")
+
+# epic bash
+# import subprocess
+
+# def configure_bluetooth():
+#     # Call the shell script to configure Bluetooth
+#     subprocess.run("/home/ballmer/groundstation_code/LTAS-groundstation/bt_config.sh", shell=True, check=True)
+#     print("Bluetooth configured: device is now discoverable and pairable.")
+
+# def main():
+#     configure_bluetooth()
+
+# if __name__ == "__main__":
+#     main()
