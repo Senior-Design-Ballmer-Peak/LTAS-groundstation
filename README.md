@@ -35,9 +35,9 @@ The ground station will allow for communication between the rocket and the mobil
 ## Usage
 
 - **Starting the GroundStation**:
-  1. Power on the Raspberry Pi and ensure all modules are correctly connected and powered.
-  2. Run the GroundStation software to initiate Bluetooth and radio communication services.
-  3. Connect your application to GroundStation via Bluetooth to begin data exchange.
+  1. Use esp32 groundstation
+  2. Turn it on
+  3. Connect to bluetooth
 
 - **Rocket Communication**:
   1. Prior to launch, ensure the radio link between GroundStation and the rocket is active and stable.
@@ -54,3 +54,4 @@ GroundStation is released under the MIT License. See the `LICENSE` file for more
 ## Support
 
 If you encounter any issues or have questions, please file an issue on the GitHub repository, and we'll make sure to help you out as soon as possible.
+
